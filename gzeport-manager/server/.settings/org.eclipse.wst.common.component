@@ -5,6 +5,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/test"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <dependent-module archiveName="service-0.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/service/service">
             <dependency-type>uses</dependency-type>
         </dependent-module>

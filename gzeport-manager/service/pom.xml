@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>api</groupId>
+  <artifactId>service</artifactId>
+  <version>0.0.1</version>
+  <packaging>jar</packaging>
+  <parent>
+  	<groupId>gzeport</groupId>
+  	<artifactId>gzeport-manager</artifactId>
+  	<version>1.0</version>
+  	<relativePath>..</relativePath>
+  </parent>
+  <name/>
+  <description/>
+  <properties>
+		<!-- 指定Maven用UTF-8编码来读取源码和文档 -->
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- 指定Maven以GBK的编码来呈现站点的HTML文件 -->
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<oracle.version>10.2.0.3.0</oracle.version>
+		<!-- mybatis版本号 -->
+		<mybatis.version>3.1.1</mybatis.version>
+		<!-- spring版本号 -->
+		<spring.version>3.1.1.RELEASE</spring.version>
+		<mybatis.version>3.1.1</mybatis.version>
+		<aspectj.version>1.7.2</aspectj.version>
+		<!-- log4j日志文件管理包版本 -->
+		<slf4j.version>1.7.7</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+  </properties>
+  <dependencies>
+  	<!-- 一、基本配置：spring配置 -->
+  	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aop</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>  
+        <groupId>org.springframework</groupId>  
+        <artifactId>spring-asm</artifactId>  
+        <version>${spring.version}</version>  
+    </dependency> 
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-aspects</artifactId>
+	    <version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-beans</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-expression</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-oxm</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-tx</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	<!-- spring-mybatis -->
+	<!-- 在sql接口的参数需要其注解包 -->
+  	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>${mybatis.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+		<version>1.2.2</version>
+	</dependency>
+  	<!-- 二、基本配置：日志配置  -->
+  	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>${log4j.version}</version>
+	</dependency>
+  	
+  	<!-- 三、各个框架的工具包     -->
+  	<dependency>
+		<groupId>cglib</groupId>
+		<artifactId>cglib-nodep</artifactId>
+		<version>2.2</version>
+	</dependency>
+	<dependency>
+		<groupId>c3p0</groupId>
+		<artifactId>c3p0</artifactId>
+		<version>0.9.0.2</version>
+	</dependency>
+	<!-- <dependency>
+		<groupId>org.javassist</groupId>
+		<artifactId>javassist</artifactId>
+		<version>3.17.1-GA</version>
+	</dependency> -->
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+		<version>1.6.9</version>
+	</dependency>
+	<!-- aop动态植入依赖包 -->
+	<dependency>
+		<groupId>aopalliance</groupId>
+		<artifactId>aopalliance</artifactId>
+		<version>1.0</version>
+	</dependency>
+	<dependency>
+		<groupId>com.oracle</groupId>
+		<artifactId>ojdbc14</artifactId>
+		<version>${oracle.version}</version>
+	</dependency>
+  	<!-- 四、apache的工具包     -->
+  	<dependency>
+		<groupId>commons-beanutils</groupId>
+		<artifactId>commons-beanutils</artifactId>
+		<version>1.8.1</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-collections</groupId>
+		<artifactId>commons-collections</artifactId>
+		<version>3.1</version>
+	</dependency>
+	<dependency>
+		<groupId>commons-logging</groupId>
+		<artifactId>commons-logging</artifactId>
+		<version>1.2</version>
+	</dependency>
+  	<!-- 五、华软工具包                -->
+    <dependency>
+      <groupId>ecp.ecpframe</groupId>
+      <artifactId>ecpframe</artifactId>
+      <version>0.1.6</version>
+    </dependency>
+  	<dependency>
+  		<groupId>ai</groupId>
+  		<artifactId>aiPaaS</artifactId>
+  		<version>0.6.33</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>ecp</groupId>
+  		<artifactId>ecp-server</artifactId>
+  		<version>0.2.41</version>
+  	</dependency>
+	<dependency>
+		<groupId>gzeport</groupId>
+		<artifactId>distributeDb</artifactId>
+		<version>0.8.7</version>
+	</dependency>
+	<!-- 六、dubbo项目jar包     -->
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>fastjson</artifactId>
+		<version>1.2.5</version>
+	</dependency>
+	
+	 <dependency>
+         <groupId>com.alibaba</groupId>
+         <artifactId>dubbo</artifactId>
+         <version>2.5.3</version>
+         <exclusions>  
+             <exclusion>  
+                 <artifactId>spring</artifactId>  
+                 <groupId>org.springframework</groupId>  
+             </exclusion>  
+         </exclusions> 
+     </dependency>
+        
+     <dependency>
+         <groupId>org.apache.zookeeper</groupId>
+		 <artifactId>zookeeper</artifactId>
+		 <version>3.4.6</version>
+     </dependency>
+  
+     <dependency>
+    	 <groupId>com.github.sgroschupf</groupId>
+	 	 <artifactId>zkclient</artifactId>
+	 	 <version>0.1</version>
+     </dependency>
+      
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.1</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

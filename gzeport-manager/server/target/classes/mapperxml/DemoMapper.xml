@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="api.server.li.dao.mapper.common.DemoMapper" >
+  <resultMap id="BaseResultMap" type="api.service.li.dao.model.Demo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ENTNAME" property="entname" jdbcType="VARCHAR" />
+    <result column="ORGCODE" property="orgcode" jdbcType="VARCHAR" />
+    <result column="REGNUM" property="regnum" jdbcType="VARCHAR" />
+    <result column="REGADDRESS" property="regaddress" jdbcType="VARCHAR" />
+    <result column="CUSTOMREGCODE" property="customregcode" jdbcType="VARCHAR" />
+    <result column="REGCUSTOM" property="regcustom" jdbcType="VARCHAR" />
+    <result column="INSPECTIONREGCODE" property="inspectionregcode" jdbcType="VARCHAR" />
+    <result column="REGINSPECTION" property="reginspection" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ENTNAME, ORGCODE, REGNUM, REGADDRESS, CUSTOMREGCODE, REGCUSTOM, INSPECTIONREGCODE, 
+    REGINSPECTION
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="api.service.li.dao.model.DemoCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from demo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from demo
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from demo
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="api.service.li.dao.model.DemoCriteria" >
+    delete from demo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="api.service.li.dao.model.Demo" >
+    insert into demo (ID, ENTNAME, ORGCODE, 
+      REGNUM, REGADDRESS, CUSTOMREGCODE, 
+      REGCUSTOM, INSPECTIONREGCODE, REGINSPECTION
+      )
+    values (#{id,jdbcType=INTEGER}, #{entname,jdbcType=VARCHAR}, #{orgcode,jdbcType=VARCHAR}, 
+      #{regnum,jdbcType=VARCHAR}, #{regaddress,jdbcType=VARCHAR}, #{customregcode,jdbcType=VARCHAR}, 
+      #{regcustom,jdbcType=VARCHAR}, #{inspectionregcode,jdbcType=VARCHAR}, #{reginspection,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="api.service.li.dao.model.Demo" >
+    insert into demo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entname != null" >
+        ENTNAME,
+      </if>
+      <if test="orgcode != null" >
+        ORGCODE,
+      </if>
+      <if test="regnum != null" >
+        REGNUM,
+      </if>
+      <if test="regaddress != null" >
+        REGADDRESS,
+      </if>
+      <if test="customregcode != null" >
+        CUSTOMREGCODE,
+      </if>
+      <if test="regcustom != null" >
+        REGCUSTOM,
+      </if>
+      <if test="inspectionregcode != null" >
+        INSPECTIONREGCODE,
+      </if>
+      <if test="reginspection != null" >
+        REGINSPECTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entname != null" >
+        #{entname,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null" >
+        #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="regnum != null" >
+        #{regnum,jdbcType=VARCHAR},
+      </if>
+      <if test="regaddress != null" >
+        #{regaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="customregcode != null" >
+        #{customregcode,jdbcType=VARCHAR},
+      </if>
+      <if test="regcustom != null" >
+        #{regcustom,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionregcode != null" >
+        #{inspectionregcode,jdbcType=VARCHAR},
+      </if>
+      <if test="reginspection != null" >
+        #{reginspection,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="api.service.li.dao.model.DemoCriteria" resultType="java.lang.Long" >
+    select count(*) from demo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update demo
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.entname != null" >
+        ENTNAME = #{record.entname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgcode != null" >
+        ORGCODE = #{record.orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regnum != null" >
+        REGNUM = #{record.regnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regaddress != null" >
+        REGADDRESS = #{record.regaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customregcode != null" >
+        CUSTOMREGCODE = #{record.customregcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regcustom != null" >
+        REGCUSTOM = #{record.regcustom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inspectionregcode != null" >
+        INSPECTIONREGCODE = #{record.inspectionregcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reginspection != null" >
+        REGINSPECTION = #{record.reginspection,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update demo
+    set ID = #{record.id,jdbcType=INTEGER},
+      ENTNAME = #{record.entname,jdbcType=VARCHAR},
+      ORGCODE = #{record.orgcode,jdbcType=VARCHAR},
+      REGNUM = #{record.regnum,jdbcType=VARCHAR},
+      REGADDRESS = #{record.regaddress,jdbcType=VARCHAR},
+      CUSTOMREGCODE = #{record.customregcode,jdbcType=VARCHAR},
+      REGCUSTOM = #{record.regcustom,jdbcType=VARCHAR},
+      INSPECTIONREGCODE = #{record.inspectionregcode,jdbcType=VARCHAR},
+      REGINSPECTION = #{record.reginspection,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="api.service.li.dao.model.Demo" >
+    update demo
+    <set >
+      <if test="entname != null" >
+        ENTNAME = #{entname,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null" >
+        ORGCODE = #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="regnum != null" >
+        REGNUM = #{regnum,jdbcType=VARCHAR},
+      </if>
+      <if test="regaddress != null" >
+        REGADDRESS = #{regaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="customregcode != null" >
+        CUSTOMREGCODE = #{customregcode,jdbcType=VARCHAR},
+      </if>
+      <if test="regcustom != null" >
+        REGCUSTOM = #{regcustom,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionregcode != null" >
+        INSPECTIONREGCODE = #{inspectionregcode,jdbcType=VARCHAR},
+      </if>
+      <if test="reginspection != null" >
+        REGINSPECTION = #{reginspection,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="api.service.li.dao.model.Demo" >
+    update demo
+    set ENTNAME = #{entname,jdbcType=VARCHAR},
+      ORGCODE = #{orgcode,jdbcType=VARCHAR},
+      REGNUM = #{regnum,jdbcType=VARCHAR},
+      REGADDRESS = #{regaddress,jdbcType=VARCHAR},
+      CUSTOMREGCODE = #{customregcode,jdbcType=VARCHAR},
+      REGCUSTOM = #{regcustom,jdbcType=VARCHAR},
+      INSPECTIONREGCODE = #{inspectionregcode,jdbcType=VARCHAR},
+      REGINSPECTION = #{reginspection,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

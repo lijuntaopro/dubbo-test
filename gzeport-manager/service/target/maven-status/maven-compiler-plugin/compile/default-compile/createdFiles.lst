@@ -1,0 +1,9 @@
+api\service\li\dubbo\interfaces\IDemoRSV.class
+api\service\li\dao\model\DemoCriteria$GeneratedCriteria.class
+api\service\li\dao\model\DemoCriteria$Criterion.class
+api\service\li\dubbo\dto\DemoReqDTO.class
+api\service\li\dubbo\dto\DemoRespDTO.class
+api\service\li\dubbo\dto\DemoDTO.class
+api\service\li\dao\model\DemoCriteria$Criteria.class
+api\service\li\dao\model\Demo.class
+api\service\li\dao\model\DemoCriteria.class

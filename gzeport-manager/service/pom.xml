@@ -13,22 +13,6 @@
   </parent>
   <name/>
   <description/>
-  <properties>
-		<!-- 指定Maven用UTF-8编码来读取源码和文档 -->
-    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- 指定Maven以GBK的编码来呈现站点的HTML文件 -->
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<oracle.version>10.2.0.3.0</oracle.version>
-		<!-- mybatis版本号 -->
-		<mybatis.version>3.1.1</mybatis.version>
-		<!-- spring版本号 -->
-		<spring.version>3.1.1.RELEASE</spring.version>
-		<mybatis.version>3.1.1</mybatis.version>
-		<aspectj.version>1.7.2</aspectj.version>
-		<!-- log4j日志文件管理包版本 -->
-		<slf4j.version>1.7.7</slf4j.version>
-		<log4j.version>1.2.17</log4j.version>
-  </properties>
   <dependencies>
   	<!-- 一、基本配置：spring配置 -->
   	<dependency>
@@ -212,19 +196,42 @@
       
   </dependencies>
   <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.1</version>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.1</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-    </plugins>
+  	 <!-- 打的是jar包，无特别要求，给他打源码和文档包 -->
+  	 <plugins>
+  	 	<plugin>  
+		    <groupId>org.apache.maven.plugins</groupId>  
+		    <artifactId>maven-jar-plugin</artifactId>  
+		</plugin>  
+  	 		<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-source-plugin</artifactId>
+			    <version>2.1.2</version>
+			    <executions>
+			      <execution>
+			        <id>attach-sources</id>
+			        <phase>verify</phase>
+			        <goals>
+			          <goal>jar-no-fork</goal>
+			        </goals>
+			      </execution>
+			    </executions>
+			</plugin>
+			<plugin>          
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-javadoc-plugin</artifactId>
+			    <version>2.7</version>
+			    <configuration>
+					<encoding>utf-8</encoding>
+				</configuration>
+			    <executions>
+			      <execution>
+			        <id>attach-javadocs</id>
+			          <goals>
+			            <goal>jar</goal>
+			          </goals>
+			      </execution>
+			    </executions>
+		  </plugin>
+  	 </plugins>
   </build>
 </project>

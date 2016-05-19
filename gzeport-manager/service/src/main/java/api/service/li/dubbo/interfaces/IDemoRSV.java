@@ -12,7 +12,11 @@ import api.service.li.dao.model.DemoCriteria;
 import api.service.li.dubbo.dto.DemoDTO;
 import api.service.li.dubbo.dto.DemoReqDTO;
 import api.service.li.dubbo.dto.DemoRespDTO;
-
+/**
+ * 
+ * @author Administrator
+ * dubbo暴露的接口
+ */
 public interface IDemoRSV {
 	public long saveDemo(DemoDTO demo) throws DataAccessException;
 	int updateDemo(DemoDTO record) throws DataAccessException;

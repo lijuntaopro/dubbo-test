@@ -1,14 +1,80 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<!-- 聚合模块的创建，父模块，所有的子模块都继承父模块的配置 -->
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>gzeport</groupId>
 	<artifactId>gzeport-manager</artifactId>
 	<version>1.0</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>server</module>
-		<module>comsumer</module>
-		<module>service</module>
+		<module>/server</module>
+		<module>/consumer</module>
+		<module>/service</module>
 	</modules>
-	<build />
+	<properties>
+		<!-- 指定Maven用UTF-8编码来读取源码和文档 -->
+    	<project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+		<!-- 指定Maven以GBK的编码来呈现站点的HTML文件 -->
+		<project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+		<oracle.version>10.2.0.3.0</oracle.version>
+		<!-- mybatis版本号 -->
+		<mybatis.version>3.1.1</mybatis.version>
+		<!-- spring版本号 -->
+		<spring.version>3.1.1.RELEASE</spring.version>
+		<mybatis.version>3.1.1</mybatis.version>
+		<aspectj.version>1.7.2</aspectj.version>
+		<!-- log4j日志文件管理包版本 -->
+		<slf4j.version>1.7.7</slf4j.version>
+		<log4j.version>1.2.17</log4j.version>
+    </properties>
+	<build>
+		<plugins>
+			<!-- 子模块打包都要打javadoc和源码包 -->
+			<!-- 打这些包，速度会很慢的，请在需要的子模块开启 -->
+			<!-- <plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-source-plugin</artifactId>
+			    <version>2.1.2</version>
+			    <executions>
+			      <execution>
+			        <id>attach-sources</id>
+			        <phase>verify</phase>
+			        <goals>
+			          <goal>jar-no-fork</goal>
+			        </goals>
+			      </execution>
+			    </executions>
+			</plugin>
+			<plugin>          
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-javadoc-plugin</artifactId>
+			    <version>2.7</version>
+			    <configuration>
+					<encoding>utf-8</encoding>
+				</configuration>
+			    <executions>
+			      <execution>
+			        <id>attach-javadocs</id>
+			          <goals>
+			            <goal>jar</goal>
+			          </goals>
+			      </execution>
+			    </executions>
+		  </plugin> -->
+		  
+		  <!-- 如果打包是war包时，使用的war插件 -->
+		  <plugin>
+	        <artifactId>maven-war-plugin</artifactId>
+	      </plugin>
+	      <!-- 编译器的选择 -->
+	      <plugin>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>3.1</version>
+	        <configuration>
+	          <source>1.6</source>
+	          <target>1.6</target>
+	        </configuration>
+	      </plugin> 
+		</plugins>
+	</build>
 </project>

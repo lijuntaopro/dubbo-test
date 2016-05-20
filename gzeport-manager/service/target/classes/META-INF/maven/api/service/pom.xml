@@ -197,41 +197,37 @@
   </dependencies>
   <build>
   	 <!-- 打的是jar包，无特别要求，给他打源码和文档包 -->
-  	 <plugins>
-  	 	<plugin>  
-		    <groupId>org.apache.maven.plugins</groupId>  
-		    <artifactId>maven-jar-plugin</artifactId>  
-		</plugin>  
-  	 		<plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-source-plugin</artifactId>
-			    <version>2.1.2</version>
-			    <executions>
-			      <execution>
-			        <id>attach-sources</id>
-			        <phase>verify</phase>
-			        <goals>
-			          <goal>jar-no-fork</goal>
-			        </goals>
-			      </execution>
-			    </executions>
-			</plugin>
-			<plugin>          
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-javadoc-plugin</artifactId>
-			    <version>2.7</version>
-			    <configuration>
-					<encoding>utf-8</encoding>
-				</configuration>
-			    <executions>
-			      <execution>
-			        <id>attach-javadocs</id>
-			          <goals>
-			            <goal>jar</goal>
-			          </goals>
-			      </execution>
-			    </executions>
-		  </plugin>
-  	 </plugins>
+  	 <!-- <plugins>   
+ 	 	<plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-source-plugin</artifactId>
+		    <version>2.1.2</version>
+		    <executions>
+		      <execution>
+		        <id>attach-sources</id>
+		        <phase>verify</phase>
+		        <goals>
+		          <goal>jar-no-fork</goal>
+		        </goals>
+		      </execution>
+		    </executions>
+		</plugin>
+		<plugin>          
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-javadoc-plugin</artifactId>
+		    <version>2.7</version>
+		    <configuration>
+				<encoding>utf-8</encoding>
+			</configuration>
+		    <executions>
+		      <execution>
+		        <id>attach-javadocs</id>
+		          <goals>
+		            <goal>jar</goal>
+		          </goals>
+		      </execution>
+		    </executions>
+	    </plugin>
+  	 </plugins> -->
   </build>
 </project>

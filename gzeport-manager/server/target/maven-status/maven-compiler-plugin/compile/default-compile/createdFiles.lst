@@ -1,6 +1,0 @@
-api\server\li\service\interfaces\DemoSV.class
-api\server\li\dao\mapper\common\DemoMapper.class
-api\server\li\service\impl\DemoSVImpl$1.class
-api\server\li\dubbo\impl\DemoRSVImpl.class
-api\server\li\startup\ServerStart.class
-api\server\li\service\impl\DemoSVImpl.class

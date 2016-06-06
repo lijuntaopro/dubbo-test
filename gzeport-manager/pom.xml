@@ -28,13 +28,11 @@
 		<log4j.version>1.2.17</log4j.version>
     </properties>
 	<build>
+		<!-- plugins：子模块直接继承 -->
 		<plugins>
-			<!-- 子模块打包都要打javadoc和源码包 -->
-			<!-- 打这些包，速度会很慢的，请在需要的子模块开启 -->
-			<!-- <plugin>
+			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-source-plugin</artifactId>
-			    <version>2.1.2</version>
 			    <executions>
 			      <execution>
 			        <id>attach-sources</id>
@@ -45,43 +43,85 @@
 			      </execution>
 			    </executions>
 			</plugin>
-			<plugin>          
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-javadoc-plugin</artifactId>
-			    <version>2.7</version>
-			    <configuration>
-					<encoding>utf-8</encoding>
-				</configuration>
-			    <executions>
-			      <execution>
-			        <id>attach-javadocs</id>
-			          <goals>
-			            <goal>jar</goal>
-			          </goals>
-			      </execution>
-			    </executions>
-		  </plugin> -->
-		  
-		  <!-- 如果打包是war包时，使用的war插件 -->
-		  <plugin>  
-		    <groupId>org.apache.maven.plugins</groupId>  
-		    <artifactId>maven-war-plugin</artifactId>
-		    <version>2.2</version>  
-		  </plugin>
-		  <plugin>  
-		    <groupId>org.apache.maven.plugins</groupId>  
-		    <artifactId>maven-jar-plugin</artifactId>
-		    <version>2.4</version>  
-		  </plugin>
-	      <!-- 编译器的选择 -->
-	      <plugin>
-	        <artifactId>maven-compiler-plugin</artifactId>
-	        <version>3.1</version>
-	        <configuration>
-	          <source>1.6</source>
-	          <target>1.6</target>
-	        </configuration>
-	      </plugin> 
+			
+			  <!-- 如果打包是war包时，使用的war插件 -->
+		    <plugin>  
+		    	<groupId>org.apache.maven.plugins</groupId>  
+		    	<artifactId>maven-war-plugin</artifactId>
+		    	<version>2.2</version>
+		    	<!-- 打war包默认配置 -->
+		    	<!--<configuration>  
+				    <webResources>  
+				      <resource>  
+				        <directory>src\main\resources</directory>  
+				        <targetPath>WEB-INF\classes</targetPath>  
+				        <includes>  
+				          <include>**</include>  
+				        </includes>  
+				      </resource>  
+				      <resource>  
+				        <directory>src\main\java</directory>  
+				        <targetPath>WEB-INF\classes</targetPath>  
+				        <includes>  
+				          <include>**</include>  
+				        </includes>  
+				      </resource>  
+				    </webResources>  
+				  </configuration>  --> 
+		  	</plugin>
+		 	 <!-- 如果打包是war包时，使用的war插件 -->
+		  	<plugin>  
+			    <groupId>org.apache.maven.plugins</groupId>  
+			    <artifactId>maven-jar-plugin</artifactId>
+			    <version>2.4</version>  
+			</plugin>
+		      <!-- 编译器的选择 -->
+		    <plugin>
+		        <artifactId>maven-compiler-plugin</artifactId>
+		        <version>3.1</version>
+		        <configuration>
+		          <source>1.6</source>
+		          <target>1.6</target>
+		        </configuration>
+		    </plugin> 
 		</plugins>
+		<!-- pluginManagement里面的插件作用：子模块不继承，只继承版本号 。即当子模块引用是，有插件，却没有版本号，默认继承它-->
+		<pluginManagement>
+			<plugins>
+				<!-- 子模块打包都要打javadoc和源码包 -->
+				<!-- 打这些包，速度会很慢的，请在需要的子模块开启 -->
+				<plugin>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-source-plugin</artifactId>
+				    <version>2.1.2</version>
+				    <executions>
+				      <execution>
+				        <id>attach-sources</id>
+				        <phase>verify</phase>
+				        <goals>
+				          <goal>jar-no-fork</goal>
+				        </goals>
+				      </execution>
+				    </executions>
+				</plugin>
+				<plugin>          
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-javadoc-plugin</artifactId>
+				    <version>2.7</version>
+				    <configuration>
+						<encoding>utf-8</encoding>
+					</configuration>
+				    <executions>
+				      <execution>
+				        <id>attach-javadocs</id>
+				          <goals>
+				            <goal>jar</goal>
+				          </goals>
+				      </execution>
+				    </executions>
+			  </plugin>
+			  
+			</plugins>
+		</pluginManagement>
 	</build>
 </project>

@@ -18,16 +18,6 @@
 	http://code.alibabatech.com/schema/dubbo  
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd
 	">
-	 
-	 <bean id="demoSV" class="api.server.li.service.impl.DemoSVImpl"></bean>
-	 <bean id="demoRSV" class="api.server.li.dubbo.impl.DemoRSVImpl"></bean>
-	 <dubbo:application name="${server.appName}"></dubbo:application>
-	 
-	 <dubbo:registry address="${registry.address}" check="false" subscribe="false" register=""></dubbo:registry>
-	 <dubbo:protocol name="${server.protocol.name}" port="${server.protocol.port}"></dubbo:protocol>
-	 
-	 
-	 <dubbo:service interface="api.service.li.dubbo.interfaces.IDemoRSV" ref="demoRSV" /> 
      <!-- 用于扫苗spring的支配范围 -->
      <context:component-scan base-package="api.server.li.."></context:component-scan>
       <!-- 配置服务注册组件 -->
@@ -39,6 +29,20 @@
      		</list>
      	</property>
      </bean>
+	 
+	 <bean id="demoSV" class="api.server.li.service.impl.DemoSVImpl"></bean>
+	 <bean id="demoRSV" class="api.server.li.dubbo.impl.DemoRSVImpl"></bean>
+	 <dubbo:application name="${server.appName}"></dubbo:application>
+	 
+	 <!-- 此id不能读取属性值 -->
+	 <dubbo:registry id="providerRegistry" address="${dubbo.registry.address}" protocol="${dubbo.registry.protocol}" check="${dubbo.registry.check}" subscribe="${dubbo.registry.subscribe}" register=""></dubbo:registry>
+	 
+	 <dubbo:protocol name="${dubbo.provider.protocol.name}" port="${dubbo.provider.protocol.port}"></dubbo:protocol>
+	 
+	 <!-- 此id不能读取属性值 -->
+	 <dubbo:provider id="provider" registry="${dubbo.provider.registry.id}" version="${dubbo.provider.version}" group="${dubbo.provider.group}" timeout="${dubbo.provider.timeout}" retries="2" threads="1000" />
+	 
+	 <dubbo:service interface="api.service.li.dubbo.interfaces.IDemoRSV" ref="demoRSV" provider="${dubbo.provider.id}" group="${dubbo.provider.group}" version="${dubbo.provider.version}"/> 
     
     
     <!--公共库配置 事务及服务-->

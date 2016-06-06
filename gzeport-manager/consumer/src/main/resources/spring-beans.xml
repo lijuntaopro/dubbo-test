@@ -18,9 +18,18 @@
 	http://code.alibabatech.com/schema/dubbo  
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd
 	">
-
-     <dubbo:application name="dubbo_provider"></dubbo:application>
+	  <bean class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+     	<property name="locations">
+     		<list>
+	     		<value>classpath:dubbo.properties</value>
+     		</list>
+     	</property>
+     </bean>
+     <dubbo:application name="${dubbo.consumer.appName}"></dubbo:application>
+     
+	 <dubbo:registry id="consumerRegistry" address="${dubbo.registry.address}" protocol="${dubbo.registry.protocol}" check="${dubbo.registry.check}" subscribe="${dubbo.registry.subscribe}" register=""></dubbo:registry>
+     
      <dubbo:reference id="demoRSV"
 		interface="api.service.li.dubbo.interfaces.IDemoRSV"
-		url="dubbo://127.0.0.1:20880/api.service.li.dubbo.interfaces.IDemoRSV"></dubbo:reference>
+		registry="${dubbo.consumer.registry.id}" group="${dubbo.provider.group}" version="${dubbo.provider.version}"></dubbo:reference>
 </beans>
